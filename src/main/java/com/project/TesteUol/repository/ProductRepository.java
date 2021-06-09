@@ -13,7 +13,6 @@ public interface ProductRepository extends JpaRepository<Product, String> {
 
 
     Optional<Product> findById(String id);
-
     @Query(value = "SELECT * FROM tb_products WHERE Product.id = :id ")
     default
 
@@ -21,11 +20,14 @@ public interface ProductRepository extends JpaRepository<Product, String> {
         return null;
     }
 
-    @Query("SELECT * FROM tb_products WHERE Product.name = :name ")
+    @Query("SELECT * FROM tb_products WHERE Product.name like :name ")
     default
-
-    Optional<List<Product>> findByToday() {
+    Optional<List<Product>> findByFilter() {
         return null;
     }
+
+//  Optional<List<Product>> findByToday() {
+//      return null;
+//  }
 
 }

@@ -31,11 +31,6 @@ public class ProductController {
         return ResponseEntity.ok(service.update(dto));
     }
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<ProductDto>> findAll(){
-        return ResponseEntity.ok(service.findAll());
-    }
-
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ProductDto> findById(@PathVariable String id){
         return ResponseEntity.ok(service.findById(id));
@@ -46,8 +41,14 @@ public class ProductController {
         return ResponseEntity.ok(service.delete(id));
     }
 
-    @GetMapping(value = "/today",produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/all",produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<ProductDto>> findByToday(){
-        return ResponseEntity.ok(service.findByToday());
+        return ResponseEntity.ok(service.findAll());
     }
+
+    @GetMapping(value = "/filter",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<ProductDto>> findByFilter(){
+        return ResponseEntity.ok(service.findByFilter());
+    }
+
 }

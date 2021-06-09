@@ -64,13 +64,13 @@ public class ProductService {
         repository.deleteById(dto.getId());
         return dto;
     }
-    @Transactional(readOnly = true)
-    public List<ProductDto> findByToday() {
-        return repository.findByToday().map(mapper::toDto).orElseThrow(NotFoundExceptiom::new);
-    }
 
-    public
-    void setRepository(ProductRepository repository) {
+   @Transactional(readOnly = true)
+   public List<ProductDto>findByFilter() {
+      return repository.findByFilter().map(mapper::toDto).orElseThrow(NotFoundExceptiom::new);
+   }
+
+    public void setRepository(ProductRepository repository) {
         this.repository = repository;
     }
 }
